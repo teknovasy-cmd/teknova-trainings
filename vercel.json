@@ -1,0 +1,6 @@
+{ "rewrites": [
+  { "source": "/register", "destination": "/register.html" },
+  { "source": "/modes", "destination": "/modes.html" },
+  { "source": "/tracks", "destination": "/tracks.html" },
+  { "source": "/trainings/:id", "destination": "/training.html" }
+] }

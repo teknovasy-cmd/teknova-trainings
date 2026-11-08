@@ -1,0 +1,17 @@
+# Teknova Trainings — Cloudflare Workers static assets routing.
+#
+# html_handling is left at its default ("auto-trailing-slash"), which already serves:
+#   /          -> /index.html
+#   /modes     -> /modes.html
+#   /tracks    -> /tracks.html
+#   /register  -> /register.html
+#
+# IMPORTANT: never rewrite a route to a ".html" target here.
+# auto-trailing-slash 307-redirects any ".html" URL back to its extensionless form,
+# which collides with a ".html" rewrite and produces an infinite redirect loop
+# (ERR_TOO_MANY_REDIRECTS: /modes -> /modes.html -> /modes -> ...).
+#
+# Only the dynamic /trainings/:id route needs an explicit rule. Its target is the
+# extensionless "/training" so auto-trailing-slash resolves it to training.html
+# with a 200, without triggering a redirect.
+/trainings/:id  /training  200
